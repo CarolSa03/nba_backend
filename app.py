@@ -71,7 +71,7 @@ def get_games():
 
                 q_score = f"{v_q}-{h_q}"
                 cum_score = f"{visitor_cum}-{home_cum}"
-                periods[f'Q{q + 1}'] = f"{q_score} ({cum_score})"
+                periods[f'Q{q + 1}'] = f"{cum_score} ({q_score})"
 
                 if home_cum == visitor_cum and home_cum > 0:
                     valid_ties.append(f"Q{q + 1} ({home_cum})")
