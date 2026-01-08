@@ -46,11 +46,11 @@ def get_games():
             def safe_gt(score):
                 return score is not None and score != 0
 
-            has_ot = any(safe_gt(game.get(f'home_score_ot{i}')) for i in range(1, 5)) or \
-                     any(safe_gt(game.get(f'visitor_score_ot{i}')) for i in range(1, 5))
+            has_ot = any(game.get(f'home_team_score_ot{i}') for i in range(1, 5)) or \
+                     any(game.get(f'visitor_team_score_ot{i}') for i in range(1, 5))
 
-            home_scores = [game.get(f'home_score_q{i}', 0) for i in range(1, 5)]
-            visitor_scores = [game.get(f'visitor_score_q{i}', 0) for i in range(1, 5)]
+            home_scores = [game.get(f'home_team_score_q{i}', 0) for i in range(1, 5)]
+            visitor_scores = [game.get(f'visitor_team_score_q{i}', 0) for i in range(1, 5)]
 
             home_cum, visitor_cum = 0, 0
             tied_quarters = []
@@ -150,3 +150,4 @@ def health():
 
 if __name__ == '__main__':
     app.run(debug=True, port=10000)
+
