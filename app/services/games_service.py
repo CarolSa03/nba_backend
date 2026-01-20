@@ -2,17 +2,17 @@ from datetime import date
 from app.services.balldontlie_client import BallDontLieClient
 from app.utils.game_processor import process_game, filter_by_view, filter_tied_only
 
+
 class GamesService:
     def __init__(self):
         self.client = BallDontLieClient()
 
     def get_games(self, season=None, start_date=None, end_date=None,
                   tied_only=False, view='quarters'):
-
         if not end_date:
             end_date = date.today().strftime('%Y-%m-%d')
 
-        params = {'per_page': 500 if tied_only else 100}
+        params = {'per_page': 100}
         if season:
             params['seasons[]'] = season
         if start_date:
@@ -30,6 +30,7 @@ class GamesService:
             processed = process_game(game)
             if processed:
                 results.append(processed)
+
         results = filter_by_view(results, view)
 
         if tied_only:
